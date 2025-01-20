@@ -1,14 +1,20 @@
-const player1Button = document.querySelector('#p1Button');
-const player2Button = document.querySelector('#p2Button');
-const player1Score = document.querySelector('#player1_score');
-const player2Score = document.querySelector('#player2_score');
+const p1 = {
+    score: 0, 
+    button: document.querySelector('#p1Button'),
+    playerScore: document.querySelector('#player1_score')
+}
+
+const p2 = {
+    score: 0, 
+    button: document.querySelector('#p2Button'),
+    playerScore: document.querySelector('#player2_score')
+}
+
 const resetButton = document.querySelector('#reset');
 const scoreToWin = document.querySelector('#aimming_score');
 
 var RESET = 0;
 let winning_score = 3;
-let p1_score = 0;
-let p2_score = 0;
 let isGameOver = false;
 
 scoreToWin.addEventListener('change', function() {
@@ -16,52 +22,43 @@ scoreToWin.addEventListener('change', function() {
     reset();
 })
 
-player1Button.addEventListener('click', function() {
+// use array when there's multiple players
+function updatePlayerScore(player, opponent) {
     if (!isGameOver) {
-        p1_score++;
-        if (p1_score == winning_score) {
+        player.score++;
+        if (player.score == winning_score) {
             isGameOver = true;
-            player1Score.classList.add('winner');
-            player2Score.classList.add('loser');
+            player.playerScore.classList.add('winner');
+            opponent.playerScore.classList.add('loser');
 
             // provided by bulma buildin
-            player1Button.disabled = true;
-            player2Button.disabled = true;
+            player.button.disabled = true;
+            opponent.button.disabled = true;
         }
 
-        player1Score.textContent = p1_score;
+        player.playerScore.textContent = player.score;
     }
+}
+
+p1.button.addEventListener('click', function() {
+    updatePlayerScore(p1, p2);
 });
 
-player2Button.addEventListener('click', function() {
-    if (!isGameOver) {
-        p2_score++;
-        if (p2_score == winning_score) {
-            isGameOver = true;
-            player1Score.classList.add('loser');
-            player2Score.classList.add('winner');
-
-            player1Button.disabled = true;
-            player2Button.disabled = true;
-        }
-
-        player2Score.textContent = p2_score;
-    }
+p2.button.addEventListener('click', function() {
+    updatePlayerScore(p2, p1);
 });
 
 resetButton.addEventListener('click', reset)
 
 function reset() {
-    p1_score = 0;
-    p2_score = 0;
-    player1Score.textContent = RESET;
-    player2Score.textContent = RESET;
-    player1Score.classList.remove('winner', 'loser');
-    player2Score.classList.remove('winner', 'loser');
     isGameOver = false;
 
-    player1Button.disabled = false;
-    player2Button.disabled = false;
+    for (let p of [p1, p2]) {
+        p.score = 0;
+        p.playerScore.textContent = RESET;
+        p.playerScore.classList.remove('winner', 'loser');
+        p.button.disabled = false;
+    }
 }
 
 
