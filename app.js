@@ -23,6 +23,10 @@ player1Button.addEventListener('click', function() {
             isGameOver = true;
             player1Score.classList.add('winner');
             player2Score.classList.add('loser');
+
+            // provided by bulma buildin
+            player1Button.disabled = true;
+            player2Button.disabled = true;
         }
 
         player1Score.textContent = p1_score;
@@ -36,6 +40,9 @@ player2Button.addEventListener('click', function() {
             isGameOver = true;
             player1Score.classList.add('loser');
             player2Score.classList.add('winner');
+
+            player1Button.disabled = true;
+            player2Button.disabled = true;
         }
 
         player2Score.textContent = p2_score;
@@ -52,6 +59,9 @@ function reset() {
     player1Score.classList.remove('winner', 'loser');
     player2Score.classList.remove('winner', 'loser');
     isGameOver = false;
+
+    player1Button.disabled = false;
+    player2Button.disabled = false;
 }
 
 

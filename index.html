@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Keeper</title>
+    <!-- introduces bulma framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    <h1><span id="player1_score">0</span> to <span id="player2_score">0</span></h1>
+    <!-- adding extra spacing ontop -->
+    <div class="section section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is2by1">
+                                <img src="/img1.jpg" alt="#">
+                            </figure>
+                        </div>
+                        <header class="card-header">
+                          <p class="card-header-title">Ping Pong Score Keeper</p>
+                          <button class="card-header-icon" aria-label="more options">
+                            <span class="icon">
+                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </header>
+                        <div class="card-content">
+                          <div class="content">
+    
+                            <h1 class="title is-1"><span id="player1_score">0</span> to <span id="player2_score">0</span></h1>
+                            <p class="subtitle">Use buttons below to keep Score</p>
+    
+                            <label for="aimming_score" class="label is-large is-inline">Target Score to Win</label>
+    
+                            <div class="select is-rounded">
+                                <select name="" id="aimming_score">
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+    
+                          </div>
+                        </div>
+                        <footer class="card-footer">
+    
+                            <button id="p1Button" class="is-primary button card-footer-item is-large">+1 Player One</button>
+                            <button id="p2Button" class="is-warning button card-footer-item is-large">+1 Player Two</button>
+                            <button id="reset" class="is-danger button card-footer-item is-large">Reset</button>
+    
+                        </footer>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <style>
         .winner {
@@ -17,21 +72,6 @@
             color: red;
         }
     </style>
-
-    <select name="" id="aimming_score">
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-
-    <button id="p1Button">+1 Player One</button>
-    <button id="p2Button">+1 Player Two</button>
-    <button id="reset">Reset</button>
 
     <script src="app.js"></script>
 </body>
